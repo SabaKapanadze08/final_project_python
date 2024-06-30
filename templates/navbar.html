@@ -1,0 +1,28 @@
+<header class="container-xl">
+    <nav class="header_nav">
+        <div class="nav_items">
+            <ul>
+                <li class="{% if active_page =='index' %} active {% endif%}"><a href="/">მთავარი</a></li>
+                <li class="{% if active_page =='contact' %} active {% endif%}"><a href="/contact" >კონტაქტი</a></li>
+                <li class="{% if active_page =='reviews' %} active {% endif%}"><a href="/reviews">შეფასებები</a></li>
+                <li class="{% if active_page =='services' %} active {% endif%}"><a href="/services">სერვისები</a></li>
+            </ul>
+
+            <div class="search_div">
+                <form action="https://google.com/search" class="search_bar">
+                    <input type="text" placeholder="Search..." name="q">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="signing">
+            {% if current_user.is_authenticated %}
+            <button type="button" class="btn btn-danger"><a href="/logout">Sign Out</a></button>
+            {% else %}
+            <button type="button" class="btn btn-danger"><a href="/signup">Sign Up</a></button>
+            <button type="button" class="btn btn-success"><a href="/signin">Sign In</a></button>
+            {% endif %}
+        </div>
+    </nav>
+</header>

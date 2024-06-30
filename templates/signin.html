@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+Sign In
+{% endblock %}
+{% block header %}
+
+
+
+<body>
+    <form class="form-signin", method="POST">
+      {{ form.hidden_tag() }}
+
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <p type="Email:">{{ form.email(class='sr-only, form-control', placeholder='Email address') }}</p>
+
+        {% if form.email.errors  %}
+          <div class="alert alert-danger">
+            {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <p type="Password:">{{ form.password(class='sr-only, form-control', placeholder='Password') }}</p>
+
+        {% if form.password.errors  %}
+          <div class="alert alert-danger">
+            {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button style="background: none; border: none;" type="submit">{{ form.submit(class='btn btn-lg btn-primary btn-block') }}</button>
+      </form>
+
+      {% endblock %}
+</body>
+</html>

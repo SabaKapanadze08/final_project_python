@@ -1,0 +1,66 @@
+{% set active_page = 'reviews' %}
+{% extends "base.html" %}
+{% block title %}
+Reviews
+{% endblock %}
+{% block header %}
+
+
+
+
+
+
+<body>
+
+    {% if current_user.role == "Customer" or current_user.role == "Admin" %}
+    <div style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+    <a href="/add_review" class="btn btn-success">Add New Review</a>
+    </div>
+    {% endif %}
+    <section class="section_container">
+
+        <div class="review-container">
+            <h2 class="review_h2">Reviews</h2>
+            <label for="search" class="input-field">
+                <i class="fas fa-search"></i>
+                <input id="search" placeholder="მოძებნეთ შეფასებები..." type="text">
+            </label>
+            <div class="suggest">
+                <span>გამოცდილება</span>
+                <span>ხარისხი</span>
+            </div>
+            
+            <div class="cards">
+                {% for review in reviews %}
+                <div class="card">
+                    <div class="card-top">
+                        <div class="name">
+                            <div class="img one" alt="">{{ review.author_initials }}</div>
+                            <p style="color: white; display: flex; justify-content: center; align-items: center;">{{ review.author_name }}</p>
+                        </div>
+                        <div class="rate">
+                            {% for star in range(review.rating) %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ review.message }}</p>
+                    </div>
+                    <div class="card-action">
+                        <span>{{ review.date }}</span>
+                        <button class="btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            გაზიარება
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+      <script src="https://kit.fontawesome.com/866cc03681.js" crossorigin="anonymous"></script>
+      {% endblock %}
+</body>
+</html>

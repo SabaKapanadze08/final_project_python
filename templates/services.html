@@ -1,0 +1,38 @@
+{% set active_page = 'services' %}
+{% extends "base.html" %}
+{% block title %}
+Services
+{% endblock %}
+{% block header %}
+
+<body>
+    
+<section>
+    {% if current_user.role == "Admin" %}
+    <div style="margin-top: 20px; display: flex; justify-content: center; align-items: center;">
+        <a href="/add_services" class="btn btn-success">Add New Service</a>
+    </div>
+    {% endif %}
+    <section class="services_container">
+    {% for items in services %}
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/static/{{ items ['image'] }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ items ['name'] }}</h5>
+                    <p class="card-text">{{ items ['price'] }}</p>
+                    <a href="/product/{{ items['id'] }}" class="btn btn-primary">გადასვლა</a>
+                    {% if current_user.role =="Admin" %}
+                    <a class="btn btn-danger" href="/delete_service/{{ items ['id'] }}">წაშლა</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+    </section>
+</section>    
+    {% endblock %}
+
+</body>
