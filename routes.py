@@ -25,6 +25,20 @@ def reviews():
     user_reviews = Review.query.all()
     return render_template("reviews.html", reviews=user_reviews)
 
+@app.route("/delete_review/<int:review_id>")
+@login_required  
+def delete_review(review_id):
+    if current_user.role != "Admin" :
+        return redirect("/")
+    
+    review = Review.query.get(review_id)
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return redirect("/reviews")
+
+
 @app.route('/add_review', methods=['GET', 'POST'])
 def add_review():
     form = ReviewForm()
