@@ -12,6 +12,7 @@ Contact
     <section>
         <section class="section_container">
               <form class="form" method="POST">
+                {{ form.hidden_tag() }}
                 <h2 class="contact_us_h2">CONTACT US</h2>
                 <p type="Name:">{{ form.name(class='input_field', placeholder='სახელი') }}</p>
                 <p type="Email:">{{ form.email(class='input_field', placeholder='მეილი') }}</p>

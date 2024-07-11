@@ -49,6 +49,9 @@ Reviews
                     </div>
                     <div class="card-action">
                         <span>{{ review.date }}</span>
+                        {% if current_user.role =="Admin" %}
+                        <a class="btn btn-danger" href="/delete_review/{{ review ['id'] }}">წაშლა</a>
+                        {% endif %}
                         <button class="btn">
                             <i class="fas fa-external-link-alt"></i>
                             გაზიარება
